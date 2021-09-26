@@ -133,8 +133,7 @@ function forecast(cityid) {
     })
     .then(function (response) {
       for (i = 0; i < 5; i++) {
-        //var date = moment().format("DD/MM/YY");
-        var date = new Date(
+      var date = new Date(
           response.list[(i + 1) * 8 - 1].dt * 1000
         ).toLocaleDateString("en-GB");
         var iconcode = response.list[(i + 1) * 8 - 1].weather[0].icon;
