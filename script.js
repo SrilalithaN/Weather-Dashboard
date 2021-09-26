@@ -58,10 +58,30 @@ function currentWeather(city) {
       var ws = response.wind.speed;
       var windsmph = (ws * 2.237).toFixed(1);
       $(currentWSpeed).html(windsmph + "MPH");
-      // Display UVIndex.
-      //By Geographic coordinates method and using appid and coordinates as a parameter we are going build our uv query url inside the function below.
+
+      // Display UVIndex by calling the function UVIndex
+
       UVIndex(response.coord.lon, response.coord.lat);
     });
+  // calling the function to display 5-day forecast
+  forecast(response.id);
+
+  if (response.cod == 200) {
+    sCity = JSON.parse(localStorage.getItem("cityname"));
+    console.log(sCity);
+    if (sCity == null) {
+      sCity = [];
+      sCity.push(city.toUpperCase());
+      localStorage.setItem("cityname", JSON.stringify(sCity));
+      addToList(city);
+    } else {
+      if (find(city) > 0) {
+        sCity.push(city.toUpperCase());
+        localStorage.setItem("cityname", JSON.stringify(sCity));
+        addToList(city);
+      }
+    }
+  }
 }
 // This function returns the UVIindex response.
 function UVIndex(ln, lt) {
@@ -84,5 +104,35 @@ function UVIndex(ln, lt) {
     });
 }
 
+// function to display the 5 days forecast for the current city.
+function forecast(cityid) {
+  var dayover = false;
+  var queryforcastURL =
+    "https://api.openweathermap.org/data/2.5/forecast?id=" +
+    cityid +
+    "&units=metric" +
+    "&appid=" +
+    APIKey;
+
+  fetch(queryforcastURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (response) {
+      for (i = 0; i < 5; i++) {
+        var date = moment().format("DD/MM/YY");
+        var iconcode = response.list[(i + 1) * 8 - 1].weather[0].icon;
+        var iconurl = "https://openweathermap.org/img/wn/" + iconcode + ".png";
+        var temp = response.list[(i + 1) * 8 - 1].main.temp;
+        //var tempF = ((temp.toFixed(2);
+        var humidity = response.list[(i + 1) * 8 - 1].main.humidity;
+
+        $("#fDate" + i).html(date);
+        $("#fImg" + i).html("<img src=" + iconurl + ">");
+        $("#fTemp" + i).html(temp + "&#8451");
+        $("#fHumidity" + i).html(humidity + "%");
+      }
+    });
+}
 //Click Handlers
 $("#search-button").on("click", displayWeather);
