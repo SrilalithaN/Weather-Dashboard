@@ -43,7 +43,7 @@
   - This image is when the clear history button is clicked
     ![](assets/images/screenshot4.png)
 - The following is the link to the deployed code : https://github.com/SrilalithaN/Weather-Dashboard
-- The following is the link to the deployed application:
+- The following is the link to the deployed application: https://srilalithan.github.io/Weather-Dashboard/
 
 ## Credits:
 
