@@ -34,10 +34,14 @@
 ## Assets:
 
 - The following are the screenshots of the application
-  ![](assets/images/screenshot1.png)
-  ![](assets/images/screenshot2.png)
-  ![](assets/images/screenshot3.png)
-  ![](assets/images/screenshot4.png)
+  - This image shows the current and weather forecast of searched city:
+    ![](assets/images/screenshot1.png)
+  - This image shows an alert for entering wrong city name
+    ![](assets/images/screenshot2.png)
+  - This image shows the list of all searched cities
+    ![](assets/images/screenshot3.png)
+  - This image is when the clear history button is clicked
+    ![](assets/images/screenshot4.png)
 - The following is the link to the deployed code : https://github.com/SrilalithaN/Weather-Dashboard
 - The following is the link to the deployed application:
 
