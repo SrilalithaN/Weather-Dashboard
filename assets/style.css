@@ -19,3 +19,6 @@ li:hover {
   background-color: lightslategray;
   text-decoration: underline;
 }
+#dialog {
+  display: none;
+}
